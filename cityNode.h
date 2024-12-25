@@ -6,7 +6,7 @@ using namespace std;
 class CityNode{
   private:
     string cityName;
-    int totalPopulation, susceptiblePopulation, infectedPopulation, recoveredPopulation;
+    int totalPopulation, susceptiblePopulation, infectedPopulation, recoveredPopulation, distanceWeight;
     CityNode* nextCity;
   public:
     CityNode();
@@ -18,6 +18,7 @@ class CityNode{
     int getSusceptiblePopulation();
     int getInfectedPopulation();
     int getRecoveredPopulation();
+    int getDistanceWeight();
     CityNode* getNextCity();
 
     void setCityName(string);
@@ -25,6 +26,7 @@ class CityNode{
     void setSusceptiblePopulation(int);
     void setInfectedPopulation(int);
     void setRecoveredPopulation(int);
+    void setDistanceWeight(int);
     void setNextCity(CityNode*);
 };
 

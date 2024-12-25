@@ -20,6 +20,7 @@ class SinglyLinkedList: public IList{
     void clear();
     CityNode* getEntry(int) const;
     CityNode* replace(int, CityNode&);
+
     ~SinglyLinkedList();
 };
 #endif

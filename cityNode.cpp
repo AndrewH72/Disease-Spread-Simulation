@@ -5,15 +5,17 @@ CityNode::CityNode(){
   susceptiblePopulation = 0;
   infectedPopulation = 0;
   recoveredPopulation = 0;
+  distanceWeight = 0;
   nextCity = nullptr;
 }
 
-CityNode::CityNode(string cN, int tP, int sP, int iP, int rP, CityNode* nC){
+CityNode::CityNode(string cN, int tP, int iP, int rP, int dW, CityNode* nC){
   cityName = cN;
   totalPopulation = tP;
-  susceptiblePopulation = sP;
+  susceptiblePopulation = tP;
   infectedPopulation = iP;
   recoveredPopulation = rP;
+  distanceWeight = dW;
   nextCity = nC;
 }
 
@@ -23,6 +25,7 @@ CityNode::CityNode(const CityNode& otherCity){
   susceptiblePopulation = otherCity.susceptiblePopulation;
   infectedPopulation = otherCity.infectedPopulation;
   recoveredPopulation = otherCity.recoveredPopulation;
+  distanceWeight = otherCity.distanceWeight;
   nextCity = otherCity.nextCity;
 }
 
@@ -44,6 +47,10 @@ int CityNode::getInfectedPopulation(){
 
 int CityNode::getRecoveredPopulation(){
   return recoveredPopulation;
+}
+
+int CityNode::getDistanceWeight(){
+  return distanceWeight;
 }
 
 CityNode* CityNode::getNextCity(){
@@ -68,6 +75,10 @@ void CityNode::setInfectedPopulation(int iP){
 
 void CityNode::setRecoveredPopulation(int rP){
   recoveredPopulation = rP;
+}
+
+void CityNode::setDistanceWeight(int dW){
+  distanceWeight = dW;
 }
 
 void CityNode::setNextCity(CityNode* nC){

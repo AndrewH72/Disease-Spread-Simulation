@@ -1,4 +1,4 @@
-ifndef ADJLISTGRAPH_H
+#ifndef ADJLISTGRAPH_H
 #define ADJLISTGRAPH_H
 #include "graphInterface.h"
 

@@ -9,12 +9,12 @@ CityNode::CityNode(){
   nextCity = nullptr;
 }
 
-CityNode::CityNode(string cN, int tP, int iP, int rP, int dW, CityNode* nC){
+CityNode::CityNode(string cN, int tP, int iP, int dW, CityNode* nC){
   cityName = cN;
   totalPopulation = tP;
-  susceptiblePopulation = tP;
+  susceptiblePopulation = tP - iP;
   infectedPopulation = iP;
-  recoveredPopulation = rP;
+  recoveredPopulation = 0;
   distanceWeight = dW;
   nextCity = nC;
 }

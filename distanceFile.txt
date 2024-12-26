@@ -1,0 +1,6 @@
+Reno,Salt Lake City,518
+Reno,Las Vegas,442
+Reno,San Francisco,218
+Salt Lake City,Las Vegas,420
+Salt Lake City,San Francisco,736
+San Francisco,Seattle,808

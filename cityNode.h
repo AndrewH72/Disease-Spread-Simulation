@@ -10,7 +10,7 @@ class CityNode{
     CityNode* nextCity;
   public:
     CityNode();
-    CityNode(string, int, int, int, int, CityNode*);
+    CityNode(string, int, int, int, CityNode*);
     CityNode(const CityNode&);
 
     string getCityName();

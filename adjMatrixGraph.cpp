@@ -57,3 +57,46 @@ bool AdjMatrixGraph::removeEdge(int vertex1, int vertex2){
   }
   return canRemove;
 }
+void AdjMatrixGraph::depthFirstTraversal(int startingPosition, bool visited[]){
+  ArrayStack<int> arrStack;
+  visited[startingPosition] = true;
+
+  arrStack.push(startingPosition);
+  while(!arrStack.isEmpty()){
+    int currentItem = arrStack.getTop();
+    bool foundUnvisited = false;
+
+    if(!visited[currentItem]){
+      visited[currentItem] = true;
+    }
+    
+    for(int i = numVertices - 1; i >= 0; i--){
+      if(adjMatrix[currentItem][i] != 0 && !visited[i]){
+        arrStack.push(i);
+        foundUnvisited = true;
+      }
+    }
+  }
+}
+
+void AdjMatrixGraph::breadthFirstTraversal(int startingPosition, bool visited[]){
+  ArrayQueue<int> arrQueue;
+  visited[startingPosition] = true;
+
+  arrQueue.enqueue(startingPosition);
+  while(!arrQueue.isEmpty()){
+    int currentItem = arrQueue.getFront();
+    bool foundUnvisited = false;
+
+    if(!visited[currentItem]){
+      visited[currentItem] = true;
+    }
+    
+    for(int i = numVertices - 1; i >= 0; i--){
+      if(adjMatrix[currentItem][i] != 0 && !visited[i]){
+        arrQueue.enqueue(i);
+        foundUnvisited = true;
+      }
+    }
+  }
+}

@@ -10,10 +10,10 @@ cityNode.o: cityNode.h cityNode.cpp
 singlyLinkedList.o: listInterface.h singlyLinkedList.h singlyLinkedList.cpp
 	g++ -c singlyLinkedList.cpp
 
-adjListGraph.o: graphInterface.h adjListGraph.h adjListGraph.cpp
+adjListGraph.o: graphInterface.h arrayStack.h arrayQueue.h adjListGraph.h adjListGraph.cpp
 	g++ -c adjListGraph.cpp
 
-adjMatrixGraph.o: graphInterface.h adjMatrixGraph.h adjMatrixGraph.cpp
+adjMatrixGraph.o: graphInterface.h arrayStack.h arrayQueue.h adjMatrixGraph.h adjMatrixGraph.cpp
 	g++ -c adjMatrixGraph.cpp
 
 helpers.o: singlyLinkedList.h adjMatrixGraph.h adjListGraph.h disease.h helpers.h helpers.cpp

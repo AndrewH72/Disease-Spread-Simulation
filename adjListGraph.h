@@ -1,6 +1,8 @@
 #ifndef ADJLISTGRAPH_H
 #define ADJLISTGRAPH_H
 #include "graphInterface.h"
+#include "arrayStack.h"
+#include "arrayQueue.h"
 
 class AdjListGraph: public IGraph{
   private:
@@ -16,6 +18,9 @@ class AdjListGraph: public IGraph{
     bool removeVertex(int);
     bool addEdge(int, int, int);
     bool removeEdge(int, int);
+
+    void depthFirstTraversal(int, bool[]);
+    void breadthFirstTraversal(int, bool[]);
 };
 #endif
 

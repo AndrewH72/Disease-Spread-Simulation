@@ -1,6 +1,8 @@
 #ifndef ADJMATRIXGRAPH_H
 #define ADJMATRIXGRAPH_H
 #include "graphInterface.h"
+#include "arrayStack.h"
+#include "arrayQueue.h"
 
 class AdjMatrixGraph: public IGraph{
   private:
@@ -16,5 +18,8 @@ class AdjMatrixGraph: public IGraph{
     bool removeVertex(int);
     bool addEdge(int, int, int);
     bool removeEdge(int, int);
+
+    void depthFirstTraversal(int, bool[]);
+    void breadthFirstTraversal(int, bool[]);
 };
 #endif

@@ -66,3 +66,57 @@ bool AdjListGraph::removeEdge(int vertex1, int vertex2){
   }
   return canRemove;
 }
+
+void AdjListGraph::depthFirstTraversal(int startingPosition, bool visited[]){
+  int i = 0;
+  CityNode* currCity = adjList[startingPosition];
+  ArrayStack<CityNode*> arrStack;
+  CityNode* neighborList[numVertices];
+  visited[startingPosition] = true;
+
+  arrStack.push(currCity);
+  while(!arrStack.isEmpty()){
+    CityNode* currentItem = arrStack.getTop();
+    bool foundUnvisited = false;
+
+    while(currCity != nullptr){
+      neighborList[i] = currCity;
+      currCity = currCity->getNextCity();
+      i++;
+    }
+
+    for(int i = 0; i < numVertices; i++){
+      if(!visited[i]){
+        arrStack.push(neighborList[i]);
+        visited[i] = true;
+      }
+    }
+  }
+}
+void AdjListGraph::breadthFirstTraversal(int startingPosition, bool visited[]){
+  int i = 0;
+  CityNode* currCity = adjList[startingPosition];
+  ArrayQueue<CityNode*> arrQueue;
+  CityNode* neighborList[numVertices];
+  visited[startingPosition] = true;
+
+  arrQueue.enqueue(currCity);
+  while(!arrQueue.isEmpty()){
+    CityNode* currentItem = arrQueue.getFront();
+    bool foundUnvisited = false;
+
+    
+    while(currCity != nullptr){
+      neighborList[i] = currCity;
+      currCity = currCity->getNextCity();
+      i++;
+    }
+
+    for(int i = 0; i < numVertices; i++){
+      if(!visited[i]){
+        arrQueue.enqueue(neighborList[i]);
+        visited[i] = true;
+      }
+    }
+  }
+}

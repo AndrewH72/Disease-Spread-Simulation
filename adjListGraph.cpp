@@ -18,13 +18,41 @@ bool AdjListGraph::isAdjacent(int vertex1, int vertex2){
 }
 
 
-
-void AdjListGraph::getNeighbors(int vertex){
-  CityNode* currCity = adjList[vertex];
-  while(currCity != nullptr){
-    cout << currCity->getCityName() << " ";
+CityNode** AdjListGraph::getNeighbors(int vertex){
+  if(vertex >= 0 && vertex <= numVertices){
+    CityNode* currCity = adjList[vertex];
+    CityNode** neighborsList = new CityNode*[maxVertices];
+    int neighborIndex = 0;
+    while(currCity != nullptr){
+      neighborsList[neighborIndex] = currCity;
+      currCity = currCity->getNextCity();
+      neighborIndex++;
+    }
+    neighborsList[neighborIndex] = nullptr
+    return neighborsList;
+    }
+  return nullptr;
   }
-  cout << endl;
+}
+
+
+int AdjListGraph::getNumNeighbors(int vertex){
+  if(vertex >= 0 && vertex <= numVertices){
+    CityNode* currCity = adjList[vertex];
+    int neighborIndex = 0;
+    while(currCity != nullptr){
+      neighborIndex++;
+    } 
+    return neighborIndex;
+  }
+  return 0;
+}
+
+CityNode* AdjListGraph::getCityNode(int vertex){
+  if(vertex >= 0 && vertex <= numVertices){
+    return adjList[vertex];
+  }
+  return nullptr;
 }
 
 bool AdjListGraph::addVertex(int vertex, const CityNode& newVertex){

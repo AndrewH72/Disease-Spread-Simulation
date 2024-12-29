@@ -13,7 +13,9 @@ class AdjListGraph: public IGraph{
     AdjListGraph();
 
     bool isAdjacent(int, int);
-    void getNeighbors(int);
+    CityNode** getNeighbors(int);
+    int getNumNeighbors(int);
+    CityNode* getCityNode(int);
     bool addVertex(int, const CityNode&);
     bool removeVertex(int);
     bool addEdge(int, int, int);

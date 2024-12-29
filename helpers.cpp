@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <map>
+#include <cstdlib>
+#include <ctime>
 #include "helpers.h"
 using namespace std;
 
@@ -30,22 +32,51 @@ void readData(ifstream& pFile, ifstream& dFile, AdjListGraph& graph){
     graph.addEdge(nameConversion[cityName], nameConversion[cityName2], distanceWeight);
   }
 }
-void calculatePopulations(Disease disease, CityNode& city){
-  float infectionRate = disease.getInfectionRate();
-  float recoveryRate = disease.getRecoveryRate();
 
-  float susceptibleRate = -(infectionRate  * city.getInfectedPopulation() * city.getSusceptiblePopulation()) / city.getTotalPopulation();
-  float infectedRate = (infectionRate  * city.getInfectedPopulation() * city.getSusceptiblePopulation()) / city.getTotalPopulation() - (recoveryRate * city.getInfectedPopulation());
-  float recoveredRate = recoveryRate * city.getInfectedPopulation() ;
-  
-  city.setSusceptiblePopulation(city.getSusceptiblePopulation() + susceptibleRate);
-  city.setInfectedPopulation(city.getInfectedPopulation() + infectedRate);
-  city.setRecoveredPopulation(city.getRecoveredPopulation() + recoveredRate);
+bool shouldInfect(float tR){
+  int scaledRate = tR * 1000;
+  int randomNumber = rand() % 1000;
+  return randomNumber < scaledRate;
 }
 
-void collectData(ofstream& outputFile, Disease disease, CityNode& city, int maxIterations){
-  for(int i = 0; i < maxIterations; i++){
-    outputFile << city.getSusceptiblePopulation() << ", " << city.getInfectedPopulation() << ", " << city.getRecoveredPopulation() << endl;
-    calculatePopulations(disease, city);
+bool shouldRecovery(float rR){
+  int scaledRate = rR * 100;
+  int randomNumber = rand() % 100;
+  return randomNumber < scaledRate;
+}
+
+void runSimulation(Disease disease, AdjListGraph& graph, int numIterations){
+  srand(time(0));
+
+  for(int i = 0; i < numIterations; i++){
+    for(int j = 0; j < 5; j++){
+      CityNode* currCity = graph.getCityNode(j);
+
+      bool isInfected = shouldInfect(disease.getInfectionRate());
+      if(isInfected && currCity.getSusceptiblePopulation() > 0){
+        currCity->setInfectedPopulation(currCity->getInfectedPopulation() + 1);
+        currCity->setSusceptiblePopulation(currCity->getSusceptiblePopulation() - 1);
+      }
+
+      if(currCity->getInfectedPopulation() > 0){
+        CityNode** neighborsList = graph.getNeighbors(j);
+        int numNeighbors = graph.getNumNeighbors(j);
+
+        for(int k = 0; k < numNeighbors; k++){
+          CityNode* neighboringCity = neighborsList[k];
+          
+          bool isCityInfected = shouldInfect(disease.getInfectionRate());
+          if(isCityInfected && neighboringCity->getSusceptiblePopulation() > 0){
+            neighboringCity->setInfectedPopulation(neighboringCity->getInfectedPopulation() + 1);
+            neighboringCity->setSusceptiblePopulation(neighboringCity->getSusceptiblePopulation() - 1);
+          }
+        }
+      }
+      bool isRecovered = shouldRecover(disease.getRecoveryRate());
+      if(isRecovered && currCity->getInfectedPopulation() > 0){
+        currCity->setRecoveredPopulation(currCity->getRecoveredPopulation() + 1);
+        currCity->setInfectedPopulation(currCity->getInfectedPopulation() - 1);
+      }
+    }
   }
 }

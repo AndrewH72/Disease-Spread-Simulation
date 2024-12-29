@@ -1,6 +1,6 @@
-Reno,274915,1,0
-Salt Lake City,209593,1,0
-Las Vegas,660929,1,0
-San Francisco,808988,1,0
-Seattle,755078,1,0
+Reno,274915,0,0
+Salt Lake City,209593,0,0
+Las Vegas,660929,0,0
+San Francisco,808988,0,0
+Seattle,755078,0,0
 

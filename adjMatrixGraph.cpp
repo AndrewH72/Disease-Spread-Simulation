@@ -15,13 +15,14 @@ bool AdjMatrixGraph::isAdjacent(int vertex1, int vertex2){
   return adjMatrix[vertex1][vertex2] != 0;
 }
 
-void AdjMatrixGraph::getNeighbors(int vertex){
+CityNode** AdjMatrixGraph::getNeighbors(int vertex){
   for(int i = 0; i < numVertices; i++){
     if(adjMatrix[vertex][i] != 0){
       cout << i << " ";
     }
     cout << endl;
   }
+  return nullptr;
 }
 
 bool AdjMatrixGraph::addVertex(int vertex, const CityNode& newVertex){

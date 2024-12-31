@@ -11,8 +11,5 @@ int main(){
   Disease Covid19 = Disease(0.89, 0.982);
   CityNode testCity = CityNode("Test", 100, 20, 0, nullptr);
 
-  readData(cityFile, distFile, cityGraph);
-  collectData(dataFile, Covid19, testCity, 100);
-
   return 0;
 }

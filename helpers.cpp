@@ -39,10 +39,16 @@ bool shouldInfect(float tR){
   return randomNumber < scaledRate;
 }
 
-bool shouldRecovery(float rR){
+bool shouldRecover(float rR){
   int scaledRate = rR * 100;
   int randomNumber = rand() % 100;
   return randomNumber < scaledRate;
+}
+
+void collectData(ofstream& outputFile, CityNode** nList, int nListNum){
+  for(int i = 0; i < nListNum; i++){
+    outputFile << nList[i]->getCityName() << ", " << nList[i]->getSusceptiblePopulation() << ", " << nList[i]->getInfectedPopulation() << ", " << nList[i]->getRecoveredPopulation();
+  }
 }
 
 void runSimulation(Disease disease, AdjListGraph& graph, int numIterations){
@@ -53,7 +59,7 @@ void runSimulation(Disease disease, AdjListGraph& graph, int numIterations){
       CityNode* currCity = graph.getCityNode(j);
 
       bool isInfected = shouldInfect(disease.getInfectionRate());
-      if(isInfected && currCity.getSusceptiblePopulation() > 0){
+      if(isInfected && currCity->getSusceptiblePopulation() > 0){
         currCity->setInfectedPopulation(currCity->getInfectedPopulation() + 1);
         currCity->setSusceptiblePopulation(currCity->getSusceptiblePopulation() - 1);
       }

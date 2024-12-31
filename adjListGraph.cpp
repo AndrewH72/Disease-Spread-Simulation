@@ -28,12 +28,11 @@ CityNode** AdjListGraph::getNeighbors(int vertex){
       currCity = currCity->getNextCity();
       neighborIndex++;
     }
-    neighborsList[neighborIndex] = nullptr
+    neighborsList[neighborIndex] = nullptr;
     return neighborsList;
     }
   return nullptr;
   }
-}
 
 
 int AdjListGraph::getNumNeighbors(int vertex){

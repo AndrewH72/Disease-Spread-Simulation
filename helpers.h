@@ -5,4 +5,6 @@
 
 void readData(ifstream&, ifstream&, AdjListGraph&);
 bool shouldInfect(float);
+bool shouldRecover(float);
+void collectData(ofstream&, CityNode**, int);
 void runSimulation(Disease, AdjListGraph&, int);

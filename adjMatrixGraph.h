@@ -13,7 +13,7 @@ class AdjMatrixGraph: public IGraph{
     AdjMatrixGraph();
     
     bool isAdjacent(int, int);
-    void getNeighbors(int);
+    CityNode** getNeighbors(int);
     bool addVertex(int, const CityNode&);
     bool removeVertex(int);
     bool addEdge(int, int, int);
